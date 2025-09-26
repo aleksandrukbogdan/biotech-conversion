@@ -1,0 +1,121 @@
+// Плавная прокрутка при клике на ссылки в меню
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80, // Учитываем высоту фиксированной шапки
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('techConsultForm');
+    const steps = form.querySelectorAll('.form-step');
+    let currentStep = 0;
+
+    // Показываем первый шаг
+    showStep(currentStep);
+
+    // Кнопка "Далее"
+    form.querySelectorAll('.btn-next').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (validateStep(currentStep)) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+    });
+
+    // Кнопка "Назад"
+    form.querySelectorAll('.btn-prev').forEach(btn => {
+        btn.addEventListener('click', function() {
+            currentStep--;
+            showStep(currentStep);
+        });
+    });
+
+    function showStep(stepIndex) {
+        steps.forEach((step, index) => {
+            step.style.display = index === stepIndex ? 'block' : 'none';
+        });
+        
+        // Обновляем видимость кнопок навигации
+        updateNavButtons();
+    }
+
+    function updateNavButtons() {
+        const prevButtons = form.querySelectorAll('.btn-prev');
+        const nextButtons = form.querySelectorAll('.btn-next');
+        
+        // Показываем/скрываем кнопки в зависимости от шага
+        prevButtons.forEach(btn => {
+            btn.style.display = currentStep > 0 ? 'block' : 'none';
+        });
+        
+        nextButtons.forEach(btn => {
+            btn.style.display = currentStep < steps.length - 1 ? 'block' : 'none';
+        });
+    }
+
+    function validateStep(stepIndex) {
+        const currentStep = steps[stepIndex];
+        const requiredInputs = currentStep.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredInputs.forEach(input => {
+            if (!input.value.trim()) {
+                input.style.borderColor = '#dc3545';
+                isValid = false;
+                
+                // Добавляем сообщение об ошибке
+                if (!input.nextElementSibling || !input.nextElementSibling.classList.contains('error-message')) {
+                    const errorMsg = document.createElement('div');
+                    errorMsg.className = 'error-message';
+                    errorMsg.textContent = 'Это поле обязательно для заполнения';
+                    errorMsg.style.color = '#dc3545';
+                    errorMsg.style.fontSize = '0.8rem';
+                    errorMsg.style.marginTop = '0.5rem';
+                    input.parentNode.appendChild(errorMsg);
+                }
+            } else {
+                input.style.borderColor = '#e9ecef';
+                // Удаляем сообщение об ошибке, если оно есть
+                const errorMsg = input.parentNode.querySelector('.error-message');
+                if (errorMsg) {
+                    errorMsg.remove();
+                }
+            }
+        });
+
+        return isValid;
+    }
+
+    // Отправка формы
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (validateStep(currentStep)) {
+            // Здесь код отправки формы
+            alert('Запрос отправлен! Наши специалисты свяжутся с вами в течение 24 часов.');
+            form.reset();
+            currentStep = 0;
+            showStep(currentStep);
+        }
+    });
+
+    // Убираем ошибки при вводе
+    form.querySelectorAll('input, textarea, select').forEach(input => {
+        input.addEventListener('input', function() {
+            this.style.borderColor = '#e9ecef';
+            const errorMsg = this.parentNode.querySelector('.error-message');
+            if (errorMsg) {
+                errorMsg.remove();
+            }
+        });
+    });
+});

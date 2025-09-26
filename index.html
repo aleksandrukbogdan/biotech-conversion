@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScienceDevice - Твой проводник в мир науки</title>
+    <!-- Подключаем шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- Подключаем наш CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Шапка сайта -->
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="logo">
+          <img
+            src="images/logo.png"
+            alt="ScienceDevice - профессиональные анализаторы"
+            class="logo-image"
+          />
+        </a>
+        <ul class="nav__list">
+          <li><a href="#students">Ученикам</a></li>
+          <li><a href="#universities">Студентам</a></li>
+          <li><a href="#professionals">Руководителям</a></li>
+          <li><a href="#specs1">Тех. характеристики</a></li>
+          <li><a href="#research">Статьи</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Герой-секция с крупным заголовком и кнопками -->
+      <section class="hero">
+        <div class="hero__content">
+          <h1 class="display-small">Точность, которой можно доверять</h1>
+          <p class="headline-small">
+            Анализатор Скороход — это портативное решение для экспертных
+            химико-экологических исследований, соответствующее требованиям
+            стандартов
+          </p>
+          <div class="hero__buttons">
+            <a href="#students" class="btn btn--primary">Для образовательных учреждений</a>
+            <a href="#professionals" class="btn btn--secondary">Для научных исследований</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- <section class="hero">
+            <div class="hero__content">
+                <h1>Точность, которой можно доверять</h1>
+                <p>Анализатор [Название] — это портативное решение для экспертных химико-экологических исследований, соответствующее требованиям стандартов [ГОСТ/ISO XXX].</p>
+                <div class="hero__buttons">
+                    <a href="#specs" class="btn btn--primary">Технические характеристики</a>
+                    <a href="#research" class="btn btn--outline">Применение в исследованиях</a>
+                </div>
+            </div>
+            Фоном лучше сделать не абстрактное фото, а стилизованное изображение прибора в лаборатории или график данных
+        </section> -->
+
+      <!-- Секция для школьников и учеников колледжей -->
+      <!-- <section id="students" class="audience-section section--students">
+            <div class="container">
+                <h2>Скучные опыты в учебнике? Попробуй настоящую науку!</h2>
+                <div class="content-wrapper">
+                    <div class="text-content">
+                        <h3>Представь, что ты детектив, который ищет следы веществ. Наш аппарат — твой супер-прибор. Проверь кислотность газировки, узнай, чистая ли вода в фонтанчике, или поставь настоящий эксперимент для проекта.</h3>
+                        <p> </p>
+                        <p>-Научиться создавать и оптимизировать хроматографические методы</p>
+                        <p>-Попробовать себя в роли разработчика методик</p>
+                        <p>-Освоить современное программное обеспечение</p>
+                        <p>-Обучиться пользовательским операциям по техническому обслуживанию прибора</p>
+                        <p> </p>
+                        <ul>
+                            <li>Просто и понятно</li>
+                            <li>Безопасно</li>
+                            <li>Поддержка проектов</li>
+                        </ul>
+                    </div>
+                    <div class="image-content">
+                        <img src="images/student.jpg" alt="Школьник проводит эксперимент с аппаратом">
+                    </div>
+                </div>
+            </div>
+        </section> -->
+      <section class="solutions-section" id="education">
+          <div class="container">
+              <div class="section-header">
+                  <h2 class="headline-medium">Решения для образования и науки</h2>
+              </div>
+              <div class="solutions-grid">
+                  <!-- Card 1: Schools -->
+                  <div class="solution-card">
+                      <h3 class="title-large">Современное оборудование для школ</h3>
+                      <div class="features-list">
+                          <div class="feature-item">
+                              <div class="feature-icon">🎓</div>
+                              <div class="feature-text">
+                                  <h4 class="title-medium">Соответствие ФГОС</h4>
+                                  <p class="body-medium">
+                                      Оборудование позволяет выполнять практические работы в
+                                      соответствии с требованиями образовательных стандартов.
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="feature-item">
+                              <div class="feature-icon">🔬</div>
+                              <div class="feature-text">
+                                  <h4 class="title-medium">Проектная деятельность</h4>
+                                  <p class="body-medium">
+                                      Идеально подходит для выполнения индивидуальных и
+                                      групповых исследовательских проектов.
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="feature-item">
+                              <div class="feature-icon">🏆</div>
+                              <div class="feature-text">
+                                  <h4 class="title-medium">Подготовка к олимпиадам</h4>
+                                  <p class="body-medium">
+                                      Практическая подготовка учащихся к конкурсам и олимпиадам
+                                      по химии и экологии.
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Card 2: Universities -->
+                  <div class="solution-card">
+                      <h3 class="title-large">Профессиональное оборудование для вузов</h3>
+                      <ul class="scientific-list body-large">
+                          <li>
+                              Практикумы по аналитической химии и экологическому
+                              мониторингу
+                          </li>
+                          <li>
+                              Курсовые и дипломные работы с реальными задачами
+                          </li>
+                          <li>Магистерские диссертации и аспирантские исследования</li>
+                          <li>
+                              Создание и оптимизация хроматографических методов
+                          </li>
+                      </ul>
+                      <div class="university-partners">
+                          <h4 class="title-medium">Используется в ведущих вузах:</h4>
+                          <div class="partners-chips">
+                              <div class="university-chip">Первый МГМУ им. И.М. Сеченова</div>
+                              <div class="university-chip">РНИМУ им. Н.И. Пирогова</div>
+                              <div class="university-chip">МГУ им. М.В. Ломоносова</div>
+                              <div class="university-chip">РХТУ им. Д.И. Менделеева</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Секция для профессионалов -->
+      <section id="professionals" class="professionals-section">
+          <div class="container">
+              <div class="section-header">
+                  <span class="section-badge">Научные исследования</span>
+                  <h2 class="headline-medium">
+                      Гибкие решения для полевых и лабораторных задач
+                  </h2>
+              </div>
+              <div class="professionals-grid">
+                  <!-- Left Column: Research Area Cards -->
+                  <div class="research-areas-grid">
+                      <div class="research-card">
+                          <span class="material-symbols-outlined">eco</span>
+                          <h4 class="title-medium">Экологический мониторинг</h4>
+                      </div>
+                      <div class="research-card">
+                          <span class="material-symbols-outlined">science</span>
+                          <h4 class="title-medium">Агрохимические исследования</h4>
+                      </div>
+                      <div class="research-card">
+                          <span class="material-symbols-outlined">water_drop</span>
+                          <h4 class="title-medium">Гидрохимический анализ</h4>
+                      </div>
+                      <div class="research-card">
+                          <span class="material-symbols-outlined">local_pharmacy</span>
+                          <h4 class="title-medium">Контроль качества</h4>
+                      </div>
+                  </div>
+                  <!-- Right Column: Key Advantages & CTA -->
+                  <div class="key-advantages-panel">
+                      <h4 class="title-large">Ключевые преимущества</h4>
+                      <div class="advantages-chips">
+                          <div class="advantage-chip">ГОСТ</div>
+                          <div class="advantage-chip">Поверка</div>
+                          <div class="advantage-chip">Калибровка</div>
+                          <div class="advantage-chip">Методическая поддержка</div>
+                      </div>
+                      <div class="panel-cta">
+                          <h4 class="title-large">Нужна консультация?</h4>
+                          <p class="body-medium">Наши специалисты помогут подобрать решение для ваших исследовательских задач.</p>
+                          <a href="#tech-consultation" class="btn btn--elevated">Запросить спецификацию</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Секция с техническими характеристиками (Таблица) -->
+      <section id="specs1" class="specs-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="headline-medium">Технические характеристики</h2>
+          </div>
+
+          <div class="specs-accordion">
+            <!-- Panel 1: Main Specs -->
+            <div class="expansion-panel">
+              <div class="panel-header">
+                <span class="material-symbols-outlined">tune</span>
+                <h3 class="panel-title title-large">Основные характеристики</h3>
+                <span class="material-symbols-outlined panel-chevron">expand_more</span>
+              </div>
+              <div class="panel-content">
+                <table>
+                  <tbody>
+                    <tr><td>Исполнение</td><td>Моноблок</td><td>Моноблок</td></tr>
+                    <tr><td>Максимальное рабочее давление, МПа</td><td>35</td><td>35</td></tr>
+                    <tr><td>Насос</td><td>Последовательный плунжерный</td><td>Последовательный плунжерный</td></tr>
+                    <tr><td>Диапазон скорости потока, мл/мин</td><td>0,01 - 10</td><td>0,01 - 10</td></tr>
+                    <tr><td>Автоматическая промывка</td><td>Есть</td><td>Есть</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Panel 2: Analysis System -->
+            <div class="expansion-panel">
+              <div class="panel-header">
+                <span class="material-symbols-outlined">analytics</span>
+                <h3 class="panel-title title-large">Система анализа</h3>
+                <span class="material-symbols-outlined panel-chevron">expand_more</span>
+              </div>
+              <div class="panel-content">
+                <table>
+                  <tbody>
+                    <tr><td>Режимы элюирования</td><td>Изократический</td><td>Градиентный</td></tr>
+                    <tr><td>Вводы пробы</td><td>Полуавтоматический кран</td><td>Полуавтоматический кран</td></tr>
+                    <tr><td>Термостат колонок</td><td>4 колонки х 300 мм</td><td>4 колонки х 300 мм</td></tr>
+                    <tr><td>Диапазон температур, °С</td><td>(комн. – 10) - 99</td><td>(комн. – 10) - 99</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <!-- Panel 3: Detector System -->
+            <div class="expansion-panel">
+              <div class="panel-header">
+                <span class="material-symbols-outlined">lightbulb</span>
+                <h3 class="panel-title title-large">Детекторная система</h3>
+                <span class="material-symbols-outlined panel-chevron">expand_more</span>
+              </div>
+              <div class="panel-content">
+                <table>
+                    <tbody>
+                        <tr><td>Детектор</td><td>Спектрофотометрический</td><td>Спектрофотометрический</td></tr>
+                        <tr><td>Диапазон длин волн, нм</td><td>Фиксированные, 275 и 310</td><td>Переключаемые</td></tr>
+                        <tr><td>Источники излучения</td><td>Светодиоды</td><td>D2 и W лампы</td></tr>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Panel 4: Kit & Conditions -->
+            <div class="expansion-panel">
+              <div class="panel-header">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <h3 class="panel-title title-large">Комплектация и условия</h3>
+                <span class="material-symbols-outlined panel-chevron">expand_more</span>
+              </div>
+              <div class="panel-content">
+                  <table>
+                      <tbody>
+                          <tr><td>В комплекте</td><td>Стандартный набор</td><td>Расширенный набор</td></tr>
+                          <tr><td>Габариты (ДхШхВ), мм</td><td>460х260х160</td><td>460х260х320</td></tr>
+                          <tr><td>Гарантия</td><td>2 года</td><td>2 года</td></tr>
+                          <tr><td>Сроки поставки</td><td>Не более 60 дней</td><td>Не более 60 дней</td></tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="research" class="publications-news">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge">Научный блог</span>
+            <h2>Последние исследования и публикации</h2>
+            <p>
+              Актуальные работы с использованием анализаторов ScienceDevice в
+              мировых научных изданиях
+            </p>
+          </div>
+
+          <div class="news-filters">
+            <button class="filter-chip active" data-filter="all">
+              <span class="material-symbols-outlined">done</span>
+              Все публикации
+            </button>
+            <button class="filter-chip" data-filter="ecology"><span class="material-symbols-outlined">done</span>Экология</button>
+            <button class="filter-chip" data-filter="chemistry"><span class="material-symbols-outlined">done</span>Химия</button>
+            <button class="filter-chip" data-filter="education">
+              <span class="material-symbols-outlined">done</span>Образование
+            </button>
+            <button class="filter-chip" data-filter="industry">
+              <span class="material-symbols-outlined">done</span>Промышленность
+            </button>
+          </div>
+
+          <div id="" class="news-grid">
+            <!-- Публикация 1 -->
+            <article class="news-card" data-category="ecology" data-year="2024">
+              <div class="news-card__header">
+                <span class="news-badge ecology">Экология</span>
+                <time class="news-date" datetime="2024-03-15"
+                  >6 августа 2022</time
+                >
+              </div>
+
+              <div class="news-card__content">
+                <h3 class="news-title">
+                  Материалы 1 всероссийской конференции с участием
+                  «MicroPlasticsEnvironment-2022»
+                </h3>
+
+                <div class="news-authors">
+                  <span class="author">Ю.А. Франк</span>
+                </div>
+
+                <p class="news-excerpt">
+                  Коллектив российских исследователей из АО ИО РАН (лаборатория
+                  физики моря) на основе сотен собранных образцов донных и
+                  пляжевых отложений, морской воды и макрофитов, провели
+                  качественный и количественный анализ...
+                </p>
+
+                <div class="news-meta">
+                  <span class="journal-name"
+                    >Environmental Science & Technology</span
+                  >
+                </div>
+              </div>
+
+              <div class="news-card__footer">
+                <div class="news-tags">
+                  <span class="news-tag">#микропластик</span>
+                  <span class="news-tag">#экологический_мониторинг</span>
+                  <span class="news-tag">#портативная_спектрометрия</span>
+                </div>
+
+                <div class="news-actions">
+                  <a
+                    href="материалы.pdf"
+                    class="news-link"
+                    aria-label="Скачать статью"
+                  >
+                    <span class="material-symbols-outlined">download</span>
+                    PDF
+                  </a>
+                  <a href="#" class="news-link" aria-label="DOI статьи">
+                    <span class="material-symbols-outlined">link</span>
+                    DOI
+                  </a>
+                  <a href="#" class="news-link" aria-label="Цитировать">
+                    <span class="material-symbols-outlined">format_quote</span>
+                    Cite
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Публикация 2 -->
+            <article
+              class="news-card"
+              data-category="chemistry"
+              data-year="2024"
+            >
+              <div class="news-card__header">
+                <span class="news-badge chemistry">Химия</span>
+                <time class="news-date" datetime="2024-02-28">3 июля 2020</time>
+              </div>
+
+              <div class="news-card__content">
+                <h3 class="news-title">
+                  Тяжелые металлы в городских почвах: оценка содержания и
+                  экологического риска
+                </h3>
+
+                <div class="news-authors">
+                  <span class="author">Жерикова Е.А.</span>
+                </div>
+
+                <p class="news-excerpt">
+                  Под влиянием сильной техногенной нагрузки в верхних горизонтах
+                  почв урболандшафтов в наибольшей степени накапливаются хром,
+                  медь, цинк и свинец. Содержание ванадия, кобальта и никеля...
+                </p>
+
+                <div class="news-meta">
+                  <span class="journal-name">Analytical Chemistry</span>
+                </div>
+              </div>
+
+              <div class="news-card__footer">
+                <div class="news-tags">
+                  <span class="news-tag">#тяжелые_металлы</span>
+                  <span class="news-tag">#почвоведение</span>
+                  <span class="news-tag">#urban_environment</span>
+                </div>
+
+                <div class="news-actions">
+                  <a
+                    href="тяжелые металлы.pdf"
+                    class="news-link"
+                    aria-label="Скачать статью"
+                  >
+                    <span class="material-symbols-outlined">download</span>
+                    PDF
+                  </a>
+                  <a href="#" class="news-link" aria-label="DOI статьи">
+                    <span class="material-symbols-outlined">link</span>
+                    DOI
+                  </a>
+                  <a href="#" class="news-link" aria-label="Цитировать">
+                    <span class="material-symbols-outlined">format_quote</span>
+                    Cite
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Публикация 3 -->
+            <article
+              class="news-card"
+              data-category="education"
+              data-year="2023"
+            >
+              <div class="news-card__header">
+                <span class="news-badge education">Образование</span>
+                <time class="news-date" datetime="2023-12-10"
+                  >10 декабря 2020</time
+                >
+              </div>
+
+              <div class="news-card__content">
+                <h3 class="news-title">
+                  Проект химического факультета МГУ им. М.В.Ломоносова и
+                  Политехнического музея
+                </h3>
+
+                <div class="news-authors">
+                  <span class="author">Е.А.Баум</span>,
+                  <span class="author">А.Н.Фурман</span>
+                </div>
+
+                <p class="news-excerpt">
+                  В течение ряда лет студенты химического факультета МГУ им.
+                  М.В.Ломоносова участвуют в совместном проекте с
+                  Политехническим музеем по атрибуции артефактов этого
+                  научно-просветительского учреждения. Статья посвящена...
+                </p>
+
+                <div class="news-meta">
+                  <span class="journal-name"
+                    >Journal of Chemical Education</span
+                  >
+                </div>
+              </div>
+
+              <div class="news-card__footer">
+                <div class="news-tags">
+                  <span class="news-tag">#химическое_образование</span>
+                  <span class="news-tag">#лабораторный_практикум</span>
+                  <span class="news-tag">#МГУ</span>
+                </div>
+
+                <div class="news-actions">
+                  <a
+                    href="мгу.pdf"
+                    class="news-link"
+                    aria-label="Скачать статью"
+                  >
+                    <span class="material-symbols-outlined">download</span>
+                    PDF
+                  </a>
+                  <a href="#" class="news-link" aria-label="DOI статьи">
+                    <span class="material-symbols-outlined">link</span>
+                    DOI
+                  </a>
+                  <a href="#" class="news-link" aria-label="Цитировать">
+                    <span class="material-symbols-outlined">format_quote</span>
+                    Cite
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!--<div class="news-cta">
+            <p>Опубликовали исследование с использованием нашего оборудования?</p>
+            <a href="#tech-consultation" class="btn btn--outline">Добавить публикацию</a>
+        </div> -->
+        </div>
+      </section>
+      <section id="comments-section" class="comments-section">
+        <div class="container">
+          <h2>Комментарии и обсуждение</h2>
+
+          <div class="comments-form">
+            <h3>Оставьте ваш комментарий</h3>
+            <form id="commentForm">
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="commentName"
+                  name="name"
+                  required
+                  class="m3-text-field"
+                  placeholder=" "
+                />
+                <label for="commentName">Ваше имя *</label>
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="commentEmail"
+                  name="email"
+                  class="m3-text-field"
+                  placeholder=" "
+                />
+                <label for="commentEmail">Email (необязательно)</label>
+              </div>
+
+              <div class="form-group">
+                <textarea
+                  id="commentText"
+                  name="text"
+                  rows="4"
+                  required
+                  class="m3-text-field"
+                  placeholder=" "
+                ></textarea>
+                <label for="commentText">Комментарий *</label>
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="agree" required />
+                  <span>Я согласен с политикой конфиденциальности</span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn--primary">
+                Отправить комментарий
+              </button>
+            </form>
+          </div>
+
+          <div class="comments-list" id="commentsList">
+            <h3>Комментарии (<span id="commentsCount">0</span>)</h3>
+            <div class="comments-container" id="commentsContainer">
+              <p class="no-comments">Пока нет комментариев. Будьте первым!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Секция с призывом к действию (CTA) -->
+      <section class="cta">
+        <div class="container">
+          <h2>Готовы начать работать с реальной наукой?</h2>
+          <!-- Кнопка -->
+          <a href="#tech-consultation" class="btn btn--primary">Отправить запрос</a>
+        </div>
+      </section>
+
+      <!-- Секция с контактами -->
+      <section id="contacts" class="contacts">
+        <div class="container">
+          <h2>Контакты</h2>
+          <p>Email: biotech.info@mail.ru</p>
+          <p>Телефон: +7 (XXX) XXX-XX-XX</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+      <div class="container">
+        <p>© БИОТЕХКОНВЕРСИЯ. Все права защищены.</p>
+      </div>
+    </footer>
+
+    <!-- Подключаем JS для плавной прокрутки -->
+    <!-- <script src="script.js"></script> -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Expansion Panels (Accordion)
+        const accordion = document.querySelector('.specs-accordion');
+        if (accordion) {
+          const panels = accordion.querySelectorAll('.expansion-panel');
+          panels.forEach(panel => {
+            const header = panel.querySelector('.panel-header');
+            header.addEventListener('click', () => {
+              // Close other panels
+              panels.forEach(p => {
+                if (p !== panel && p.classList.contains('active')) {
+                  p.classList.remove('active');
+                }
+              });
+              // Toggle current panel
+              panel.classList.toggle('active');
+            });
+          });
+        }
+
+        // Staggered Animation on Scroll
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add('visible');
+              }, index * 150); // Stagger delay
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        const panelsToAnimate = document.querySelectorAll('.specs-accordion .expansion-panel');
+        panelsToAnimate.forEach(panel => {
+          observer.observe(panel);
+        });
+
+        // News Filter Animation
+        const filters = document.querySelector('.news-filters');
+        const newsGrid = document.querySelector('.news-grid');
+        if (filters && newsGrid) {
+          const newsCards = newsGrid.querySelectorAll('.news-card');
+          filters.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-chip')) {
+              filters.querySelector('.active').classList.remove('active');
+              e.target.classList.add('active');
+
+              const filter = e.target.dataset.filter;
+              
+              newsCards.forEach(card => {
+                card.classList.add('hidden');
+              });
+
+              setTimeout(() => {
+                newsCards.forEach(card => {
+                  if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = 'flex';
+                  } else {
+                    card.style.display = 'none';
+                  }
+                });
+                // Allow reflow before showing new cards
+                setTimeout(() => {
+                  newsCards.forEach(card => {
+                    if (card.style.display === 'flex') {
+                       card.classList.remove('hidden');
+                    }
+                  });
+                }, 50);
+              }, 300); // Wait for fade out animation
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
