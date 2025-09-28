@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body class="news-article-page">
+    <div class="container">
+        <header class="news-header">
+            <a href="/news/" class="btn btn--text" style="margin-bottom: 24px;"><span class="material-symbols-outlined">arrow_back</span> К списку новостей</a>
+            <h1>{{ title }}</h1>
+            <div class="news-meta">
+                 <span class="chip chip-category">{{ primary_tag }}</span>
+                <p>Опубликовано: {{ formatted_date }}</p>
+            </div>
+        </header>
+
+        <article class="news-content">
+             {% if image %}
+                <div class="news-article__image-container">
+                    <img src="{{ url_for('uploaded_file', filename=image) }}" alt="{{ title }}" class="news-article__image">
+                </div>
+            {% endif %}
+            {{ content|safe }}
+        </article>
+        
+        <footer class="news-footer">
+            {% if document %}
+                <a href="{{ url_for('uploaded_file', filename=document) }}" class="btn btn--primary" download>
+                    <span class="material-symbols-outlined">download</span>
+                    Скачать документ
+                </a>
+            {% endif %}
+             <div class="news-tags">
+                {% for tag in tags %}
+                    <span class="chip chip-assist">#{{ tag }}</span>
+                {% endfor %}
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
