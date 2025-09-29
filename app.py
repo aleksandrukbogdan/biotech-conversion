@@ -6,23 +6,26 @@ from flask import Flask, render_template, request, redirect, url_for, session, a
 from werkzeug.utils import secure_filename
 from slugify import slugify
 
+# --- Определение абсолютного пути к проекту ---
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 app = Flask(__name__, static_folder='.', template_folder='templates')
 # Секретный ключ для сессий. В реальном проекте его лучше генерировать случайно.
 app.secret_key = 'your_very_secret_key'
 
 # --- Конфигурация ---
 # Папка для загружаемых файлов
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = os.path.join(basedir, 'uploads')
 UPLOAD_FOLDER_IMG = os.path.join(UPLOAD_FOLDER, 'img')
 UPLOAD_FOLDER_DOC = os.path.join(UPLOAD_FOLDER, 'pdf')
-NEWS_FOLDER = 'news'
+NEWS_FOLDER = os.path.join(basedir, 'news')
 ALLOWED_EXTENSIONS_IMG = {'png', 'jpg', 'jpeg', 'gif'}
 ALLOWED_EXTENSIONS_DOC = {'pdf', 'doc', 'docx', 'txt'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_FOLDER_IMG'] = UPLOAD_FOLDER_IMG
 app.config['UPLOAD_FOLDER_DOC'] = UPLOAD_FOLDER_DOC
 
-NEWS_FILE = 'news.json'
+NEWS_FILE = os.path.join(basedir, 'news.json')
 PRIMARY_TAGS = ['Экология', 'Химия', 'Образование', 'Промышленность', 'Наука']
 
 MONTHS_RU = {
@@ -102,7 +105,7 @@ def serve_static(filename):
     # Исключаем маршрут uploads и news, так как они обрабатываются отдельно
     if filename.startswith('uploads/') or filename.startswith('news/') or filename == 'admin':
         abort(404)
-    return send_from_directory('.', filename)
+    return send_from_directory(basedir, filename)
 
 
 @app.route('/admin', methods=['GET', 'POST'])
@@ -159,7 +162,7 @@ def admin():
 
                 # Форматируем контент: заменяем двойные переносы строк на параграфы
                 paragraphs = content.strip().split('\n\n')
-                formatted_content = "".join(f"<p>{p.replace('\n', '<br>')}</p>" for p in paragraphs)
+                formatted_content = "".join("<p>" + p.replace('\n', '<br>') + "</p>" for p in paragraphs)
 
                 new_entry = {
                     'id': str(uuid.uuid4()),
@@ -261,7 +264,7 @@ def regenerate_news_files():
 
             # Форматируем контент для перегенерации
             paragraphs = news_item['content'].strip().split('\n\n')
-            formatted_content = "".join(f"<p>{p.replace('\n', '<br>')}</p>" for p in paragraphs)
+            formatted_content = "".join("<p>" + p.replace('\n', '<br>') + "</p>" for p in paragraphs)
             
             rendered_html = render_template(
                 'news_post.html',
