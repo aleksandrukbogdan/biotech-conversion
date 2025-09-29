@@ -1,55 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ScienceDevice - Твой проводник в мир науки</title>
-    <!-- Подключаем шрифты -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Google Material Symbols -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <!-- Подключаем наш CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  </head>
-  <body>
-    <!-- Шапка сайта -->
-    <header class="header sticky">
-      <nav class="nav container">
-        <a href="/" class="logo">
-          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ScienceDevice - профессиональные анализаторы" class="logo-image" />
-        </a>
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav-item nav-item--dropdown">
-              <a href="#education" class="nav-link">Образование <span class="material-symbols-outlined">expand_more</span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#education">Для школы и вузов</a></li>
-                <li><a href="#professionals">Для лабораторий</a></li>
-              </ul>
-            </li>
-            <li class="nav-item"><a href="#specs1" class="nav-link">О продукте</a></li>
-            <li class="nav-item"><a href="/news" class="nav-link">Публикации</a></li>
-            <li class="nav-item"><a href="#contacts" class="nav-link">Контакты</a></li>
-          </ul>
-           <button class="icon-btn nav__close" id="nav-close" aria-label="Закрыть меню">
-            <span class="material-symbols-outlined">close</span>
-          </button>
-        </div>
-        <div class="header__actions">
-          <button class="icon-btn theme-toggle-btn" id="theme-toggle-desktop" aria-label="Переключить тему">
-            <span class="material-symbols-outlined">light_mode</span>
-          </button>
-          <a href="#contacts" class="btn btn--primary header__cta">Отправить запрос</a>
-          <button class="icon-btn nav__toggle" id="nav-toggle" aria-label="Открыть меню">
-            <span class="material-symbols-outlined">menu</span>
-          </button>
-        </div>
-      </nav>
-    </header>
+{% extends "base.html" %}
 
-    <main>
+{% block body_class %}home-page{% endblock %}
+
+{% block content %}
       <!-- Герой-секция с крупным заголовком и кнопками -->
       <section class="hero">
         <div class="hero__content">
@@ -58,9 +11,9 @@
             Анализатор «Скороход» — это свобода исследований. Получайте точные химико-экологические данные мгновенно, где бы вы ни находились: от университетской аудитории до самых отдаленных уголков природы.
           </p>
           <div class="hero__buttons">
-            <a href="#specs1" class="btn btn--primary">Посмотреть характеристики</a>
-            <a href="#education" class="btn btn--secondary">Для образования</a>
-            <a href="#professionals" class="btn btn--secondary">Для науки</a>
+            <a href="#contacts" class="btn btn--primary">Связаться с нами</a>
+            <a href="#specs1" class="btn btn--outline">Посмотреть характеристики</a>
+            <a href="#education" class="btn btn--outline">Для образования</a>
           </div>
         </div>
       </section>
@@ -212,7 +165,7 @@
                   <div class="panel-cta card-cta">
                       <h3 class="title-large">Нужна консультация?</h3>
                       <p class="body-large">Наши специалисты помогут подобрать решение для ваших исследовательских задач.</p>
-                      <a href="#tech-consultation" class="btn btn--primary label-large">
+                      <a href="#contacts" class="btn btn--primary label-large">
                           Запросить спецификацию
                           <span class="material-symbols-outlined">arrow_forward</span>
                       </a>
@@ -321,71 +274,38 @@
       </section>
       <section id="research" class="publications-news">
         <div class="container">
-          <div class="section-header">
+          <div class="section-header centered">
+            <div class="section-header__text">
             <span class="section-badge">Научный блог</span>
             <h2>Последние исследования и публикации</h2>
             <p>
               Актуальные работы с использованием анализаторов ScienceDevice в
               мировых научных изданиях
             </p>
+            </div>
           </div>
 
           <div class="news-filters">
             <button class="filter-chip active" data-filter="all">
               <span class="material-symbols-outlined">done</span>
-              Все публикации
+              Недавние
             </button>
-            <button class="filter-chip" data-filter="ecology"><span class="material-symbols-outlined">done</span>Экология</button>
-            <button class="filter-chip" data-filter="chemistry"><span class="material-symbols-outlined">done</span>Химия</button>
-            <button class="filter-chip" data-filter="education">
+            <button class="filter-chip" data-filter="Экология"><span class="material-symbols-outlined">done</span>Экология</button>
+            <button class="filter-chip" data-filter="Химия"><span class="material-symbols-outlined">done</span>Химия</button>
+            <button class="filter-chip" data-filter="Образование">
               <span class="material-symbols-outlined">done</span>Образование
             </button>
-            <button class="filter-chip" data-filter="industry">
+            <button class="filter-chip" data-filter="Промышленность">
               <span class="material-symbols-outlined">done</span>Промышленность
             </button>
+             <a href="/news/" class="btn btn--text">Все публикации</a>
           </div>
 
-          <div id="" class="news-grid">
-            {% if news_list %}
-              {% for news in news_list %}
-                <article class="news-card" data-category="{{ news.primary_tag | lower }}">
-                    <a href="{{ url_for('news_post', slug=news.slug) }}" class="news-card__link-wrapper">
-                        <div class="news-card__header">
-                            <span class="news-badge {{ news.primary_tag | lower }}">{{ news.primary_tag }}</span>
-                            {% set dt = news.date | to_datetime %}
-                            <time class="news-date" datetime="{{ dt.strftime('%Y-%m-%d') }}">{{ dt.strftime('%d %B %Y') }}</time>
-                        </div>
-                        <div class="news-card__content">
-                            <h3 class="news-title">{{ news.title }}</h3>
-                            <p class="news-excerpt">
-                                {{ news.content | striptags | truncate(150) }}
-                            </p>
-                        </div>
-                    </a>
-                    <div class="news-card__footer">
-                        <div class="news-tags">
-                          {% for tag in news.tags %}
-                            <span class="news-tag">#{{ tag }}</span>
-                          {% endfor %}
-                        </div>
-                        <div class="news-actions">
-                            {% if news.document %}
-                            <a href="{{ url_for('uploaded_file', filename=news.document) }}" class="news-link" aria-label="Скачать документ">
-                                <span class="material-symbols-outlined">download</span>
-                                PDF
-                            </a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </article>
-              {% endfor %}
-            {% else %}
-              <p>Пока нет ни одной публикации.</p>
-            {% endif %}
+          <div id="news-container" class="news-grid">
+            <!-- Новости будут загружены сюда динамически -->
           </div>
-          <!--<div class="news-cta">
-            <p>Опубликовали исследование с использованием нашего оборудования?</p>
-            <a href="#tech-consultation" class="btn btn--outline">Добавить публикацию</a>
+           <!-- <div class="news-cta">
+             <a href="/news/" class="btn btn--secondary">Все публикации</a>
         </div> -->
         </div>
       </section>
@@ -443,110 +363,64 @@
             </div>
         </div>
       </section>
-    </main>
 
-    <!-- Подвал сайта -->
-    <footer class="footer">
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq">
       <div class="container">
-        <p>© БИОТЕХКОНВЕРСИЯ. Все права защищены.</p>
+
+        <div class="section-header">
+          <span class="section-badge">Помощь</span>
+          <h2 class="headline-large">Ответы на вопросы</h2>
+          <p class="body-large">Здесь вы найдете ответы на самые популярные вопросы о наших учебных ВЭЖХ системах "Скороход". Не нашли ответа? Свяжитесь с нами для получения подробной консультации.</p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h4>Чем учебные ВЭЖХ «Скороход» отличаются от профессиональных моделей?</h4>
+            <p>Учебные хроматографы сохраняют ключевые компоненты и принципы работы профессиональных систем (насос, детектор, термостат, ПО), но выполнены в моноблочном компактном корпусе из ПЭЭК для легкости освоения и снижения стоимости. Они идеально подходят для отработки навыков без риска повредить дорогостоящее аналитическое оборудование.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Какие эксперименты можно проводить на учебных ВЭЖХ?</h4>
+            <p>Разделение и анализ смесей органических соединений, изучение влияния состава подвижной фазы, температуры, типа колонки на разделение, определение концентраций веществ (например, витаминов, кофеина, антиоксидантов), работа с биомолекулами (белки, пептиды).</p>
+          </div>
+          <div class="faq-item">
+            <h4>Какое программное обеспечение идет в комплекте?</h4>
+            <p>Программное обеспечение «Мультихром» российского производства для полного управления прибором, сбора и обработки хроматографических данных.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Есть ли градиентный режим элюирования?</h4>
+            <p>Да, продвинутая версия прибора поддерживает градиентный режим на стороне низкого давления по 2-м компонентам. Стандартная версия работает в изократическом режиме.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Какие сроки поставки оборудования?</h4>
+            <p>Срок поставки не превышает 60 календарных дней с момента заключения договора.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Какой гарантийный срок на оборудование?</h4>
+            <p>Расширенная гарантия на учебные ВЭЖХ «Скороход» составляет 2 года.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Вы работаете по 44-ФЗ и 223-ФЗ (госзакупки)?</h4>
+            <p>Да, наша компания имеет опыт успешных поставок в рамках государственных и муниципальных закупок. Мы предоставляем все необходимые документы для участия в тендерах (техническое задание, коммерческое предложение, сертификаты).</p>
+          </div>
+          <div class="faq-item">
+            <h4>Предоставляется ли обучение работе на оборудовании?</h4>
+            <p>Да, в комплект поставки входит инструктаж по работе с прибором и программным обеспечением «Мультихром». Возможно проведение более глубоких обучающих семинаров.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Где производится оборудование?</h4>
+            <p>Оборудование производится по полному циклу на собственных мощностях компании «Sevko & Co» в Московской области, что гарантирует короткие сроки поставки и отсутствие зависимости от импортных комплектующих.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Почему именно ВЭЖХ «Скороход» для оснащения учебных классов?</h4>
+            <p>Потому что это российское оборудование, сочетающее доступную цену, полный функционал для обучения и отсутствие проблем с поставками и сервисом. Оно позволяет студентам работать на "живом" приборе, а не на симуляторах, что критически важно для формирования практических навыков.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Как интегрировать ВЭЖХ в учебную программу?</h4>
+            <p>Мы готовы предоставить методические рекомендации и примеры лабораторных работ, разработанные совместно с ведущими научными институтами (такими как ИФХЭ РАН), для интеграции в курсы химии, биохимии и экологии.</p>
+          </div>
+        </div>
+
       </div>
-    </footer>
-
-    <!-- Подключаем JS для плавной прокрутки -->
-    <!-- <script src="script.js"></script> -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // Theme Toggle
-        const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
-        const body = document.body;
-
-        const applyTheme = (theme) => {
-            body.classList.toggle('dark-theme', theme === 'dark');
-            themeToggleBtns.forEach(btn => {
-                btn.querySelector('.material-symbols-outlined').textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
-            });
-        };
-
-        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        applyTheme(savedTheme);
-
-        themeToggleBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const newTheme = body.classList.contains('dark-theme') ? 'light' : 'dark';
-                localStorage.setItem('theme', newTheme);
-                applyTheme(newTheme);
-            });
-        });
-        
-        // Sticky Header on Scroll
-        const header = document.querySelector('.header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Active Link Highlighting on Scroll
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav__list a.nav-link');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href').substring(1) === entry.target.id) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, { rootMargin: '-50% 0px -50% 0px' });
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        // Mobile Navigation
-        const navMenu = document.getElementById('nav-menu'),
-              navToggle = document.getElementById('nav-toggle'),
-              navClose = document.getElementById('nav-close');
-
-        if(navToggle) {
-            navToggle.addEventListener('click', () =>{
-                navMenu.classList.add('show-menu');
-            });
-        }
-
-        if(navClose) {
-            navClose.addEventListener('click', () =>{
-                navMenu.classList.remove('show-menu');
-            });
-        }
-
-        // Expansion Panels (Accordion)
-        const accordion = document.querySelector('.specs-accordion');
-        if (accordion) {
-          const panels = accordion.querySelectorAll('.expansion-panel');
-          panels.forEach(panel => {
-            const header = panel.querySelector('.panel-header');
-            header.addEventListener('click', () => {
-              // Close other panels if you want only one open at a time
-              /*
-              panels.forEach(p => {
-                if (p !== panel && p.classList.contains('active')) {
-                  p.classList.remove('active');
-                }
-              });
-              */
-              // Toggle current panel
-              panel.classList.toggle('active');
-            });
-          });
-        }
-      });
-    </script>
-  </body>
-</html>
+    </section><!-- End F.A.Q Section -->
+{% endblock %}

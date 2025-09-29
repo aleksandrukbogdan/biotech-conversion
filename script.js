@@ -36,17 +36,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav__list a.nav-link');
 
     const observer = new IntersectionObserver((entries) => {
+        let activeSectionId = null;
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').substring(1) === entry.target.id) {
-                        link.classList.add('active');
-      }
-    });
-  }
-});
-    }, { rootMargin: '-50% 0px -50% 0px' });
+                if (!activeSectionId) { // Only set the first intersecting section as active
+                    activeSectionId = entry.target.id;
+                }
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            // Match '/#section' or '#section'
+            const linkSectionId = href.substring(href.lastIndexOf('#') + 1);
+
+            if (linkSectionId === activeSectionId) {
+                link.classList.add('active');
+            }
+        });
+
+        // Special case for home link
+        const homeLink = document.querySelector('.nav__list a.nav-link[href="/"]');
+        if (homeLink) {
+             // If no section is active and we are near the top, highlight home
+            if (!activeSectionId && window.scrollY < 200) {
+                 navLinks.forEach(link => link.classList.remove('active')); // Clear all
+                homeLink.classList.add('active');
+            } else if (activeSectionId) {
+                homeLink.classList.remove('active');
+            }
+        }
+
+    }, { rootMargin: '-40% 0px -60% 0px' });
 
     sections.forEach(section => {
         observer.observe(section);
@@ -87,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!newsContainer) return;
 
         // Определяем, находимся ли мы на главной странице
-        const isHomePage = document.querySelector('body.home-page') !== null;
+        const isHomePage = document.body.classList.contains('home-page');
 
         try {
             // Запрос к файлу news.json
@@ -197,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (filter === 'all') {
                         renderNews(allNews);
                     } else {
-                        const filteredNews = allNews.filter(news => news.primary_tag.toLowerCase() === filter.toLowerCase());
+                        const filteredNews = allNews.filter(news => (news.primary_tag || '').toLowerCase() === filter.toLowerCase());
                         renderNews(filteredNews);
                     }
                 });

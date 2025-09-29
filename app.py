@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, a
 from werkzeug.utils import secure_filename
 from slugify import slugify
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.', template_folder='templates')
 # Секретный ключ для сессий. В реальном проекте его лучше генерировать случайно.
 app.secret_key = 'your_very_secret_key'
 
@@ -72,7 +72,7 @@ def save_news(news_data):
 @app.route('/')
 def index():
     """Главная страница."""
-    return send_from_directory('.', 'index.html')
+    return render_template('index.html')
 
 @app.route('/uploads/<path:filename>')
 def uploaded_file(filename):
@@ -80,10 +80,21 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 # Добавляем маршрут для обслуживания сгенерированных новостных страниц
+@app.route('/news/')
+def news_list():
+    """Страница со списком всех новостей."""
+    return render_template('news_list.html')
+
 @app.route('/news/<path:path>')
 def serve_news(path):
     """Отдает статические файлы из папки news."""
+    abs_path = os.path.join(NEWS_FOLDER, path)
+
+    if os.path.isdir(abs_path):
+        path = os.path.join(path, 'index.html')
+
     return send_from_directory(NEWS_FOLDER, path)
+
 
 @app.route('/<path:filename>')
 def serve_static(filename):
@@ -146,10 +157,14 @@ def admin():
                 tags = [tag.strip() for tag in tags_string.split(',') if tag.strip()]
                 date_obj = datetime.datetime.now()
 
+                # Форматируем контент: заменяем двойные переносы строк на параграфы
+                paragraphs = content.strip().split('\n\n')
+                formatted_content = "".join(f"<p>{p.replace('\n', '<br>')}</p>" for p in paragraphs)
+
                 new_entry = {
                     'id': str(uuid.uuid4()),
                     'title': title,
-                    'content': content.replace('\n', '<br>'),
+                    'content': formatted_content,
                     'tags': tags,
                     'image': image_filename,
                     'document': doc_filename,
@@ -244,10 +259,14 @@ def regenerate_news_files():
             news_path = os.path.join(NEWS_FOLDER, slug)
             os.makedirs(news_path, exist_ok=True)
 
+            # Форматируем контент для перегенерации
+            paragraphs = news_item['content'].strip().split('\n\n')
+            formatted_content = "".join(f"<p>{p.replace('\n', '<br>')}</p>" for p in paragraphs)
+            
             rendered_html = render_template(
                 'news_post.html',
                 title=news_item['title'],
-                content=news_item['content'],
+                content=formatted_content, # Используем отформатированный контент
                 image=news_item.get('image'),
                 document=news_item.get('document'),
                 tags=news_item['tags'],
